@@ -5,20 +5,24 @@ func quickSort(values []int, left, right int) {
 	p := left
 	i, j := left, right
 
-	for i <= j {
-		for j >= p && values[j] >= temp {
-			j--
+	for i <= j {//用另外一种表达方式写一下
+		for j >= p {
+			if values[j] >= temp{ 
+				j--
+			}
+			else{
+				values[p] = values[j]
+				p = j
+			}
 		}
-		if j >= p {
-			values[p] = values[j]
-			p = j
-		}
-		if values[i] <= temp && i <= p {
-			i++
-		}
-		if i <= p {
-			values[p] = values[i]
-			p = i
+		if  i <= p {
+			if values[i] <= temp {
+				i++
+				}
+			else{
+				values[p] = values[i]
+				p = i
+			}
 		}
 	}
 	values[p] = temp
